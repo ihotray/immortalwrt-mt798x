@@ -23,6 +23,9 @@ mediatek_setup_interfaces()
 	*2500wan-p5*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
 		;;
+	yuncore,ax835)
+		ucidef_set_interfaces_lan_wan lan wan
+		;;
 	xiaomi,mi-router-ax3000t* |\
 	xiaomi,mi-router-wr30u*)
 		ucidef_set_interfaces_lan_wan "eth0" "eth1"
@@ -163,6 +166,11 @@ mediatek_setup_macs()
 			local wifi_mac="$(mtd_get_mac_ascii config2 wifi2gmac)"
 			mtk_facrory_write_mac Factory 4 "$wifi_mac"
 		fi
+		;;
+	yuncore,ax835)
+		lan_mac=$(mtd_get_mac_binary Factory 0x24)
+		wan_mac=$(mtd_get_mac_binary Factory 0x2a)
+		label_mac=$(mtd_get_mac_binary Factory 0x4)
 		;;
 	xiaomi,mi-router-ax3000t* |\
 	xiaomi,mi-router-wr30u*)

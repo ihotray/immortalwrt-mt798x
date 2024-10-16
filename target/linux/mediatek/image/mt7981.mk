@@ -177,6 +177,15 @@ define Device/mt7981-fpga-sd
 endef
 TARGET_DEVICES += mt7981-fpga-sd
 
+define Device/yuncore_ax835
+  DEVICE_VENDOR := YunCore
+  DEVICE_MODEL := AX835
+  DEVICE_DTS := mt7981b-yuncore-ax835
+  DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
+  SUPPORTED_DEVICES += mediatek,mt7981-spim-nor-rfb
+endef
+TARGET_DEVICES += yuncore_ax835
+
 define Device/mt7981-360-t7
   DEVICE_VENDOR := MediaTek
   DEVICE_MODEL := 360 T7
