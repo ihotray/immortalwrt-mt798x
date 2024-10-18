@@ -2173,7 +2173,7 @@ static unsigned int mtk_hnat_nf_post_routing(
 
 	if (out->netdev_ops->ndo_flow_offload_check) {
 		out->netdev_ops->ndo_flow_offload_check(&hw_path);
-		out = (IS_GMAC1_MODE) ? hw_path.virt_dev : hw_path.dev;
+		out = (IS_GMAC1_MODE) && !hnat_dsa_is_enable(hnat_priv) ? hw_path.virt_dev : hw_path.dev;
 	}
 
 	if (!IS_LAN(out) && !IS_WAN(out) && !IS_EXT(out))
